@@ -5,6 +5,8 @@ namespace TestNinja.UnitTests
 {
     class MathTests
     {
+        private Math math;
+
         [Test]
         public void Add_WhenCalled_ReturnTheSumOfArguments()
         {
