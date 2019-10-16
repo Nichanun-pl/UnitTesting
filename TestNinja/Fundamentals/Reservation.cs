@@ -7,7 +7,7 @@
         public bool CanBeCancelledBy(User user)
         {
             if (user.IsAdmin)
-                return true;
+                return false;
 
             if (MadeBy == user)
                 return true;
