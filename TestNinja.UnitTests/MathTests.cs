@@ -28,13 +28,21 @@ namespace TestNinja.UnitTests
         [Test]
         public void Max_SeconArgumentIsGreater_ReturnTheSeconArgument()
         {
+            var math = new Math();
 
+            var result = math.Max(1, 2);
+
+            Assert.That(result, Is.EqualTo(2));
         }
 
         [Test]
         public void Max_ArgumentsAreEqual_ReturnTheSameArgument()
         {
+            var math = new Math();
 
+            var result = math.Max(1, 1);
+
+            Assert.That(result, Is.EqualTo(1));
         }
     }
 }
