@@ -17,9 +17,7 @@ namespace TestNinja.UnitTests
             var result = reservation.CanBeCancelledBy(new User { IsAdmin = true });
 
             //Assert
-            Assert.IsTrue(result);
             Assert.That(result, Is.True);
-            Assert.That(result == true);
         }
 
         [Test]
