@@ -40,5 +40,13 @@ namespace TestNinja.UnitTests
 
             Assert.That(id, Is.Not.EqualTo(Guid.Empty));
         }
+
+        [Test]
+        public void OnErrorLogged_WhenCalled_RaiseEvent()
+        {
+            var logger = new ErrorLogger();
+
+            logger.OnErrorLogged(Guid.NewGuid());
+        }
     }
 }
