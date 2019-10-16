@@ -15,5 +15,16 @@ namespace TestNinja.UnitTests
             Assert.That(result, Is.EqualTo(3));
         }
 
+        [Test]
+        public void Max_firstArgumentIsGreater_ReturnTheFirstArgument()
+        {
+
+        }
+
+        [Test]
+        public void Max_SeconArgumentIsGreater_ReturnTheSeconArgument()
+        {
+
+        }
     }
 }
