@@ -3,7 +3,8 @@ using TestNinja.Fundamentals;
 
 namespace TestNinja.UnitTests
 {
-    class MathTests
+    [TestFixture]
+    public class MathTests
     {
         private Math _math;
 
