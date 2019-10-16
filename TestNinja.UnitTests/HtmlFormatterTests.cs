@@ -15,6 +15,9 @@ namespace TestNinja.UnitTests
 
             // Specific 
             Assert.That(result, Is.EqualTo("<strong>abc</strong>"));
+
+            // More general
+            Assert.That(result, Does.StartWith("<strong>"));
         }
     }
 }
