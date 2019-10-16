@@ -4,7 +4,8 @@
     {
         public string FormatAsBold(string content)
         {
-            return "<strong>";
+            return "<strong></strong>";
+
             return $"<strong>{content}</strong>";
         }
     }
