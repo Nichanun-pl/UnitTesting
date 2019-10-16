@@ -7,6 +7,9 @@ namespace TestNinja.UnitTests
     {
         private Math math;
 
+        //SetUp
+        //TearDown
+
         [Test]
         public void Add_WhenCalled_ReturnTheSumOfArguments()
         {
