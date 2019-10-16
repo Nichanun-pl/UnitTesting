@@ -46,7 +46,7 @@ namespace TestNinja.UnitTests
         {
             var logger = new ErrorLogger();
 
-            logger.OnErrorLogged(Guid.NewGuid());
+            logger.OnErrorLogged();
 
             Assert.That(true);
         }
