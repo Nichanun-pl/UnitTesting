@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using TestNinja.Fundamentals;
+using System;
 
 namespace TestNinja.UnitTests
 {
@@ -32,6 +33,10 @@ namespace TestNinja.UnitTests
         {
             var logger = new ErrorLogger();
 
+            var id = Guid.Empty;
+            logger.ErrorLogged += (sender, args) => { id = args; };
+
+            logger.Log("a");
         }
     }
 }
