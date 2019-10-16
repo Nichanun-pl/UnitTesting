@@ -1,9 +1,20 @@
-﻿using NUnit.Framework
+﻿using NUnit.Framework;
 
 namespace TestNinja.UnitTests
 {
-    class CustomerControllerTests
+    [TestFixture]
+    public class CustomerControllerTests
     {
+        [Test]
+        public void GetCustomer_IdIsZero_ReturnNotFound()
+        {
 
+        }
+
+        [Test]
+        public void GetCustomer_IdIsZero_ReturnNotOk()
+        {
+
+        }
     }
 }
