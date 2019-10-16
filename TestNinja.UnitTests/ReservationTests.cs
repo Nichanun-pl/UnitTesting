@@ -1,5 +1,4 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NUnit.Framework;
 using TestNinja.Fundamentals;
 
@@ -19,6 +18,8 @@ namespace TestNinja.UnitTests
 
             //Assert
             Assert.IsTrue(result);
+            Assert.That(result, Is.True);
+            Assert.That(result == true);
         }
 
         [Test]
