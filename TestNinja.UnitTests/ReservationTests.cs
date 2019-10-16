@@ -30,5 +30,11 @@ namespace TestNinja.UnitTests
 
             Assert.IsTrue(result);
         }
+
+        [TestMethod]
+        public void CanBeCancelledBy_AnotherUserCancellingReservation_ReturnFalse()
+        {
+
+        }
     }
 }
