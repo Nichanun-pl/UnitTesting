@@ -18,11 +18,21 @@ namespace TestNinja.UnitTests
         [Test]
         public void Max_firstArgumentIsGreater_ReturnTheFirstArgument()
         {
+            var math = new Math();
 
+            var result = math.Max(2, 1);
+
+            Assert.That(result, Is.EqualTo(2));
         }
 
         [Test]
         public void Max_SeconArgumentIsGreater_ReturnTheSeconArgument()
+        {
+
+        }
+
+        [Test]
+        public void Max_ArgumentsAreEqual_ReturnTheSameArgument()
         {
 
         }
