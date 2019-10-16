@@ -26,5 +26,12 @@ namespace TestNinja.UnitTests
 
             Assert.That(() => logger.Log(error), Throws.ArgumentNullException);
         }
+
+        [Test]
+        public void Log_ValidError_RaiseErrorLoggedEvent()
+        {
+            var logger = new ErrorLogger();
+
+        }
     }
 }
