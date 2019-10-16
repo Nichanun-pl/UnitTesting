@@ -9,7 +9,12 @@ namespace TestNinja.UnitTests
         [Test]
         public void FormatAsBold_WhenCalled_ShouldEncloseTheStringWithStrongElement()
         {
+            var formatter = new HtmlFormatter();
 
+            var result = formatter.FormatAsBold("abc");
+
+            // Specific 
+            Assert.That(result, Is.EqualTo("<strong>abc</strong>"));
         }
     }
 }
