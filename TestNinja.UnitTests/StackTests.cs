@@ -35,7 +35,9 @@ namespace TestNinja.UnitTests
         [Test]
         public void Pop_EmptyStack_ThrowInvalidOperationException()
         {
-
+            var stack = new Stack<string>();
+            
+            Assert.That(() => stack.Pop(), Throws.InvalidOperationException);
         }
 
         [Test]
