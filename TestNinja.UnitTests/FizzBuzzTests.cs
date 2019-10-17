@@ -10,5 +10,22 @@ namespace TestNinja.UnitTests
         {
         }
 
+        [Test]
+        public void GetOutput_InputIsDivisibleBy3Only_ReturnFizz()
+        {
+
+        }
+
+        [Test]
+        public void GetOutput_InputIsDivisibleBy5Only_ReturnBuzz()
+        {
+
+        }
+
+        [Test]
+        public void GetOutput_InputIsNotDivisibleBy3Or5_ReturnTheSameNumber()
+        {
+
+        }
     }
 }
