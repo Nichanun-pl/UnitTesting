@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using TestNinja.Mocking;
 using System.Linq;
 using Newtonsoft.Json;
 
@@ -9,7 +8,7 @@ namespace TestNinja.Mocking
 {
     public class VideoService
     {
-        public IFileReader fileReader { get; set; }
+        public IFileReader FileReader { get; set; }
 
         public VideoService()
         {
