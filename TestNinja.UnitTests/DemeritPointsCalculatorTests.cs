@@ -1,4 +1,6 @@
 ﻿using NUnit.Framework;
+using System;
+using TestNinja.Fundamentals;
 
 namespace TestNinja.UnitTests
 {
@@ -6,8 +8,14 @@ namespace TestNinja.UnitTests
     public class DemeritPointsCalculatorTests
     {
         [Test]
-        public void CalculateDemeritPoints_SpeedIsNegative_ThrowArgumentOutOfRangeException()
+        [TestCase(-1)]
+        [TestCase(301)]
+        public void CalculateDemeritPoints_SpeedIsNegative_ThrowArgumentOutOfRangeException(int speed)
         {
+            var calculator = new DemeritPointsCalculator();
+            
+            Assert.That(() => calculator.CalculateDemeritPoints(speed),
+                Throws.Exception.TypeOf<ArgumentOutOfRangeException>());
         }
 
         [Test]
