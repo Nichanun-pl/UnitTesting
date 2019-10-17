@@ -75,19 +75,41 @@ namespace TestNinja.UnitTests
         [Test]
         public void Peek_EmptyStack_ThrowInvalidOperationException()
         {
-
+            var stack = new Stack<string>();
+            
+            Assert.That(() => stack.Peek(), Throws.InvalidOperationException);
         }
 
         [Test]
         public void Peek_StackWithObjects_ReturnObjectOnTopOfTheStack()
         {
+            // Arrange 
+            var stack = new Stack<string>();
+            stack.Push("a");
+            stack.Push("b");
+            stack.Push("c");
+            
+            // Act
+            var result = stack.Peek();
 
+
+            Assert.That(result, Is.EqualTo("c"));
         }
 
         [Test]
         public void Peek_StackWithObjects_DoesNotRemoveTheObjectOnTopOfTheStack()
         {
-
+            // Arrange 
+            var stack = new Stack<string>();
+            stack.Push("a");
+            stack.Push("b");
+            stack.Push("c");
+            
+            // Act
+            stack.Peek();
+            
+            // Assert
+            Assert.That(stack.Count, Is.EqualTo(3));
         }
     }
 }
