@@ -11,13 +11,13 @@ namespace TestNinja.UnitTests
         }
 
         [Test]
-        public void CalculateDemeritPoints_SpeedIsLessThanOrEqualToSpeedLimit_ReturnZero(int speed)
+        [TestCase(0, 0)]
+        [TestCase(64, 0)]
+        [TestCase(65, 0)]
+        [TestCase(66, 0)]
+        public void CalculateDemeritPoints_WhenCalled_ReturnDemeritPoints(int speed)
         {
         }
 
-        [Test]
-        public void CalculateDemeritPoints_SpeedIsLessThanSpeedLimit_ReturnZero()
-        {
-        }
     }
 }
