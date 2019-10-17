@@ -19,13 +19,14 @@ namespace TestNinja.Fundamentals
 
         public T Pop()
         {
- //           if (_list.Count == 0)
- //               throw new InvalidOperationException();
+            if (_list.Count == 0)
+                throw new InvalidOperationException();
 
             var result = _list[_list.Count - 1];
             _list.RemoveAt(_list.Count - 1);
 
-            return result; 
+            return _list[0];
+ //           return result; 
         }
 
 
