@@ -1,4 +1,4 @@
-﻿
+﻿using System.IO;
 
 namespace TestNinja.Mocking
 {
@@ -6,7 +6,7 @@ namespace TestNinja.Mocking
     {
         public string Read(string path)
         {
-            File.ReadAllText("video.txt");
+            return File.ReadAllText(path);
         }
     }
 }
