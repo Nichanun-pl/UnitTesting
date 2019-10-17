@@ -59,6 +59,34 @@ namespace TestNinja.UnitTests
         [Test]
         public void Pop_StackWithAFewObjects_RemoveObjectOnTheTop()
         {
+            // Arrange 
+            var stack = new Stack<string>();
+            stack.Push("a");
+            stack.Push("b");
+            stack.Push("c");
+            
+            // Act
+            stack.Pop();
+            
+            // Assert
+            Assert.That(stack.Count, Is.EqualTo(2));
+        }
+
+        [Test]
+        public void Peek_EmptyStack_ThrowInvalidOperationException()
+        {
+
+        }
+
+        [Test]
+        public void Peek_StackWithObjects_ReturnObjectOnTopOfTheStack()
+        {
+
+        }
+
+        [Test]
+        public void Peek_StackWithObjects_DoesNotRemoveTheObjectOnTopOfTheStack()
+        {
 
         }
     }
