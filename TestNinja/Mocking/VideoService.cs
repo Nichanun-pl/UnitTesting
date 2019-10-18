@@ -26,8 +26,6 @@ namespace TestNinja.Mocking
             return video.Title;
         }
 
-        // [] => ""
-        //[{}, {}, {}] => "1,2,3"
         public string GetUnprocessedVideosAsCsv()
         {
             var videoIds = new List<int>();
