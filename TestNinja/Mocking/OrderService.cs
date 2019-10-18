@@ -11,7 +11,6 @@
 
         public int PlaceOrder(Order order)
         {
-            return 0;
             var orderId = _storage.Store(order);
             
             // Some other work
