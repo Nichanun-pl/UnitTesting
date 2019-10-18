@@ -28,13 +28,11 @@ namespace TestNinja.Mocking
         {
             var videoIds = new List<int>();
             
-            using (var context = new VideoContext())
-            {
-                foreach (var v in videos)
-                    videoIds.Add(v.Id);
+            foreach (var v in videos)
+               videoIds.Add(v.Id);
 
-                return String.Join(",", videoIds);
-            }
+            return String.Join(",", videoIds);
+            
         }
     }
 
