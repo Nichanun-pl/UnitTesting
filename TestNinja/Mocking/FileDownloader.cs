@@ -7,11 +7,7 @@ namespace TestNinja.Mocking
         public void DownloadFile(string url, string path)
         {
             var client = new WebClient();
-            client.DownloadFile(
-                    string.Format("http://example.com/{0}/{1}",
-                        customerName,
-                        installerName),
-                    _setupDestinationFile);
+            client.DownloadFile(url, path);
         }
     }
 }
