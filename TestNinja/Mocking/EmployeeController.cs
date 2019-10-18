@@ -4,14 +4,17 @@ namespace TestNinja.Mocking
 {
     public class EmployeeController
     {
+        private readonly IEmployeeStorage _storage;
 
-        public EmployeeController()
+        public EmployeeController(IEmployeeStorage storage)
         {
-            _db = new EmployeeContext();
+            _storage = storage;
         }
 
         public ActionResult DeleteEmployee(int id)
         {
+            _storage.DeleteEmployee(id);
+
             return RedirectToAction("Employees");
         }
 
