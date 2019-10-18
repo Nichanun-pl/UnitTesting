@@ -15,8 +15,7 @@ namespace TestNinja.Mocking
         {
             _storage.DeleteEmployee(id);
 
- //           return RedirectToAction("Employees");
-            return new RedirectResult();
+            return RedirectToAction("Employees");
         }
 
         private ActionResult RedirectToAction(string employees)
