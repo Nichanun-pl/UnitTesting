@@ -1,6 +1,15 @@
-﻿namespace TestNinja.Mocking
+﻿using System.Collections.Generic;
+
+namespace TestNinja.Mocking
 {
-    class VideoRepository
+    public class VideoRepository
     {
+        public IEnumerable<Video> GetUnprocessedVideos()
+        {
+            var videos =
+            (from video in context.Videos
+                where !video.IsProcessed
+                select video).ToList();
+        }
     }
 }

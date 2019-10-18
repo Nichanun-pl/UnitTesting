@@ -30,11 +30,6 @@ namespace TestNinja.Mocking
             
             using (var context = new VideoContext())
             {
-                var videos = 
-                    (from video in context.Videos
-                    where !video.IsProcessed
-                    select video).ToList();
-                
                 foreach (var v in videos)
                     videoIds.Add(v.Id);
 
