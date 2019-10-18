@@ -1,8 +1,14 @@
-﻿
+﻿using NUnit.Framework;
 
 namespace TestNinja.UnitTests.Mocking
 {
-    class OrderServiceTests
+    [TestFixture]
+    public class OrderServiceTests
     {
+        [Test]
+        public void PlaceOrder_WhenCalled_StoreTheOrder()
+        {
+
+        }
     }
 }
