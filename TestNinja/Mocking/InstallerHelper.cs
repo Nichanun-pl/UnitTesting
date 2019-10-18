@@ -14,10 +14,9 @@ namespace TestNinja.Mocking
 
         public bool DownloadInstaller(string customerName, string installerName)
         {
-            
             try
             {
-                client.DownloadFile(
+                _fileDownloader.DownloadFile(
                     string.Format("http://example.com/{0}/{1}",
                         customerName,
                         installerName),
