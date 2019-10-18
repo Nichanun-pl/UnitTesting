@@ -26,8 +26,6 @@ namespace TestNinja.Mocking
             return video.Title;
         }
 
-        // [] => ""
-        //[{}, {}, {}] => "1,2,3"
         public string GetUnprocessedVideosAsCsv()
         {
             var videoIds = new List<int>();
@@ -36,9 +34,7 @@ namespace TestNinja.Mocking
             foreach (var v in videos)
                videoIds.Add(v.Id);
 
- //           return String.Join(",", videoIds);
-            return "1";
-            
+            return String.Join(",", videoIds);
         }
     }
 
