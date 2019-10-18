@@ -1,7 +1,6 @@
 ﻿using NUnit.Framework;
 using TestNinja.Mocking;
 using Moq;
-using System.Collections.Generic;
 
 namespace TestNinja.UnitTests.Mocking
 {
@@ -17,7 +16,7 @@ namespace TestNinja.UnitTests.Mocking
         {
             _fileReader = new Mock<IFileReader>();
             _repository = new Mock<IVideoRepository>();
-            _videoService = new VideoService(_fileReader.Object, _repository.Object);
+            _videoService = new VideoService(_fileReader.Object);
 
         }
 
@@ -34,11 +33,7 @@ namespace TestNinja.UnitTests.Mocking
         [Test]
         public void GetUnprocessedVideosAsCsv_AllVideosAreProcessed_ReturnAnEeptyString()
         {
-            _repository.Setup(r => r.GetUnprocessedVideos()).Returns(new List<Video>());
 
-            var result = _videoService.GetUnprocessedVideosAsCsv();
-
-            Assert.That(result, Is.EqualTo(""));
         }
     }
 }
