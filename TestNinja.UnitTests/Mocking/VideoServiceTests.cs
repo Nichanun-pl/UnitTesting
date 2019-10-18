@@ -40,5 +40,20 @@ namespace TestNinja.UnitTests.Mocking
             
             Assert.That(result, Is.EqualTo(""));
         }
+
+        [Test]
+        public void GetUnprocessedVideosAsCsv_AFewUnprocessedVideos_ReturnAStringWithIdOfUnprocessedVideos()
+        {
+            _repository.Setup(r => r.GetUnprocessedVideos()).Returns(new List<Video>
+            {
+                new Video {Id = 1},
+                new Video {Id = 2},
+                new Video {Id = 3},
+            });
+            
+            var result = _videoService.GetUnprocessedVideosAsCsv();
+            
+            Assert.That(result, Is.EqualTo("1,2,3"));
+        }
     }
 }
