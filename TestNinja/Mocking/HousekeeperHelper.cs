@@ -9,16 +9,16 @@ namespace TestNinja.Mocking
 {
     public class HousekeeperHelper
     {
-        private static readonly UnitOfWork UnitOfWork = new UnitOfWork();
+        private readonly IUnitOfWork _unitOfWork;
 
         public HousekeeperHelper(IUnitOfWork unitOfWork)
         {
-
+            _unitOfWork = unitOfWork;
         }
 
         public bool SendStatementEmails(DateTime statementDate)
         {
-            var housekeepers = UnitOfWork.Query<Housekeeper>();
+            var housekeepers = _unitOfWork.Query<Housekeeper>();
 
             foreach (var housekeeper in housekeepers)
             {
