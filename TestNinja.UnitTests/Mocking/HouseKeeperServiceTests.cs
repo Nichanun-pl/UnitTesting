@@ -33,7 +33,7 @@ namespace TestNinja.UnitTests.Mocking
             _statementGenerator = new Mock<IStatementGenerator>();
             _statementGenerator
                 .Setup(sg => sg.SaveStatement(_houseKeeper.Oid, _houseKeeper.FullName, (_statementDate)))
-                .Returns(_statementFileName);
+                .Returns(() => _statementFileName);
 
             _emailSender = new Mock<IEmailSender>();
             _messageBox = new Mock<IXtraMessageBox>();
@@ -113,12 +113,17 @@ namespace TestNinja.UnitTests.Mocking
 
             _service.SendStatementEmails(_statementDate);
 
+            VerifyEmailNotSent();
+        }
+
+        private void VerifyEmailNotSent()
+        {
             _emailSender.Verify(es => es.EmailFile(
-                It.IsAny<string>(),
-                It.IsAny<string>(),
-                It.IsAny<string>(),
-                It.IsAny<string>()),
-                Times.Never);
+                            It.IsAny<string>(),
+                            It.IsAny<string>(),
+                            It.IsAny<string>(),
+                            It.IsAny<string>()),
+                            Times.Never);
         }
 
         [Test]
