@@ -61,9 +61,9 @@ namespace TestNinja.UnitTests.Mocking
         }
 
         [Test]
-        public void SendStatementEmails_HouseKeepersEmailIsNull_ShouldNotGenerateStatement()
+        public void SendStatementEmails_HouseKeepersEmailIsWhitespace_ShouldNotGenerateStatement()
         {
-            _houseKeeper.Email = null;
+            _houseKeeper.Email = " ";
 
             _service.SendStatementEmails(_statementDate);
 
