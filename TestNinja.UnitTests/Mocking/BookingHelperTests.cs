@@ -53,11 +53,11 @@ namespace TestNinja.UnitTests.Mocking
             var result = BookingHelper.OverlappingBookingsExist(new Booking
             {
                 Id = 1,
-                ArrivalDate = Before(_existingBooking.ArrivalDate, days: 2),
-                DepartureDate = Before(_existingBooking.ArrivalDate)
+                ArrivalDate = Before(_existingBooking.ArrivalDate),
+                DepartureDate = After(_existingBooking.ArrivalDate)
             }, _repository.Object);
 
-            Assert.That(result, Is.Empty);
+            Assert.That(result, Is.EqualTo("a"));
         }
 
             private DateTime Before(DateTime dateTime, int days = 1)
