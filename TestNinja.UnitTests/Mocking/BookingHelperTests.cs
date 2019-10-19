@@ -11,6 +11,7 @@ namespace TestNinja.UnitTests.Mocking
     public class BookingHelper_OverlappingBookingExistTest
     {
         private Booking _booking;
+        private Mock<IBookingRepository> _repository;
 
         [SetUp]
         public void SetUp()
@@ -22,29 +23,33 @@ namespace TestNinja.UnitTests.Mocking
                 DepartureDate = DepartOn(2017, 1, 20),
                 Reference = "a"
             };
+
+            _repository = new Mock<IBookingRepository>();
+            _repository.Setup(r => r.GetActiveBookings(1)).Returns(new List<Booking>
+            {
+                _booking
+
+            }.AsQueryable());
         }
 
         [Test]
         public void BookingStartsAndFinishesBeforeAnExistingBooking_ReturnEmptyString()
         {
-            var repository = new Mock<IBookingRepository>();
-
-            repository.Setup(r => r.GetActiveBookings(1)).Returns(new List<Booking>
-            {
-                _booking
-
-            }.AsQueryable());
 
             var result = BookingHelper.OverlappingBookingsExist(new Booking
             {
                 Id = 1,
                 ArrivalDate = ArriveOn(2017, 1, 10), //Befor(_existingBooking.ArrivalDate)
                 DepartureDate = DepartOn(2017, 1, 24),
-            }, repository.Object);
+            }, _repository.Object);
 
             Assert.That(result, Is.Empty);
         }
 
+        private DateTime Before(DateTime dateTime)
+        {
+            return dateTime.AddDays(-1);
+        }
         private DateTime ArriveOn(int year, int month, int day)
         {
             return new DateTime(year, month, day, 14, 0, 0);
