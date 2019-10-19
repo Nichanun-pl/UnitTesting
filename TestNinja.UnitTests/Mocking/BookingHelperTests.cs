@@ -10,13 +10,13 @@ namespace TestNinja.UnitTests.Mocking
     [TestFixture]
     public class BookingHelper_OverlappingBookingExistTest
     {
-        private Booking _booking;
+        private Booking _existingBooking;
         private Mock<IBookingRepository> _repository;
 
         [SetUp]
         public void SetUp()
         {
-            _booking = new Booking
+            _existingBooking = new Booking
             {
                 Id = 2,
                 ArrivalDate = ArriveOn(2017, 1, 15),
@@ -27,7 +27,7 @@ namespace TestNinja.UnitTests.Mocking
             _repository = new Mock<IBookingRepository>();
             _repository.Setup(r => r.GetActiveBookings(1)).Returns(new List<Booking>
             {
-                _booking
+                _existingBooking
 
             }.AsQueryable());
         }
@@ -39,7 +39,7 @@ namespace TestNinja.UnitTests.Mocking
             var result = BookingHelper.OverlappingBookingsExist(new Booking
             {
                 Id = 1,
-                ArrivalDate = ArriveOn(2017, 1, 10), //Befor(_existingBooking.ArrivalDate)
+                ArrivalDate = Before(_existingBooking.ArrivalDate),
                 DepartureDate = DepartOn(2017, 1, 24),
             }, _repository.Object);
 
@@ -49,6 +49,10 @@ namespace TestNinja.UnitTests.Mocking
         private DateTime Before(DateTime dateTime)
         {
             return dateTime.AddDays(-1);
+        }
+        private DateTime After(DateTime dateTime)
+        {
+            return dateTime.AddDays(1);
         }
         private DateTime ArriveOn(int year, int month, int day)
         {
