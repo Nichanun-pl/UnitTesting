@@ -10,10 +10,11 @@ namespace TestNinja.UnitTests.Mocking
     [TestFixture]
     public class HouseKeeperServiceTests
     {
-        private ReHouseKeeperHelper _service;
+        private HouseKeeperService _service;
         private Mock<IStatementGenerator> _statementGenerator;
         private Mock<IEmailSender> _emailSender;
         private Mock<IXtraMessageBox> _messageBox;
+        private DateTime _statementDate = new DateTime(2017, 1, 1);
 
         [SetUp]
         public void SetUp()
@@ -38,9 +39,9 @@ namespace TestNinja.UnitTests.Mocking
         [Test]
         public void SendStatementEmails_WhenCalled_GenerateStatements()
         {
-            _service.SendStatementEmails(new DateTime(2017, 1, 1));
+            _service.SendStatementEmails(_statementDate);
 
-            _statementGenerator.Verify(sg => sg.SaveStatement(1, "b", (new DateTime(2017, 1, 1))));
+            _statementGenerator.Verify(sg => sg.SaveStatement(1, "b", (_statementDate)));
         }
     }
 }
