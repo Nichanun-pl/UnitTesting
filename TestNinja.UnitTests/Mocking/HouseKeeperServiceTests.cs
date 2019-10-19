@@ -10,8 +10,8 @@ namespace TestNinja.UnitTests.Mocking
     [TestFixture]
     public class HouseKeeperServiceTests
     {
-        [Test]
-        public void SendStatementEmails_WhenCalled_GenerateStatements()
+        [SetUp]
+        public void SetUp()
         {
             var unitOfWork = new Mock<IUnitOfWork>();
             unitOfWork.Setup(uow => uow.Query<Housekeeper>()).Returns(new List<Housekeeper>
@@ -28,7 +28,11 @@ namespace TestNinja.UnitTests.Mocking
                 statementGenerator.Object, 
                 emailSender.Object, 
                 messageBox.Object);
+        }
 
+        [Test]
+        public void SendStatementEmails_WhenCalled_GenerateStatements()
+        {
             service.SendStatementEmails(new DateTime(2017, 1, 1));
 
             statementGenerator.Verify(sg => sg.SaveStatement(1, "b", (new DateTime(2017, 1, 1))));
