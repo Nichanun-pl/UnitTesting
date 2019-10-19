@@ -49,12 +49,15 @@ namespace TestNinja.UnitTests.Mocking
         }
 
         [Test]
-        public void SendStatementEmails_WhenCalled_GenerateStatements()
+        public void SendStatementEmails_HouseKeepersEmailIsNull_ShouldNotGenerateStatement()
         {
+            _houseKeeper.Email = null;
+
             _service.SendStatementEmails(_statementDate);
 
             _statementGenerator.Verify(sg =>
-                sg.SaveStatement(_houseKeeper.Oid, _houseKeeper.FullName, (_statementDate)));
+                sg.SaveStatement(_houseKeeper.Oid, _houseKeeper.FullName, (_statementDate)),
+                Times.Never);
         }
     }
 }
