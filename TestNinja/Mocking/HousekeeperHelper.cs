@@ -12,15 +12,18 @@ namespace TestNinja.Mocking
         private readonly IUnitOfWork _unitOfWork;
         private readonly IStatementGenerator _statementGenerator;
         private readonly IEmailSender _emailSender;
+        private readonly IXtraMessageBox messageBox;
 
         public HousekeeperHelper(
             IUnitOfWork unitOfWork, 
             IStatementGenerator statementGenerator,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            IXtraMessageBox messageBox)
         {
             _unitOfWork = unitOfWork;
             _statementGenerator = statementGenerator;
             _emailSender = emailSender;
+            _messageBox = messageBox;
         }
 
         public bool SendStatementEmails(DateTime statementDate)
@@ -47,7 +50,7 @@ namespace TestNinja.Mocking
                 }
                 catch (Exception e)
                 {
-                    XtraMessageBox.Show(e.Message, string.Format("Email failure: {0}", emailAddress),
+                    _messageBox.Show(e.Message, string.Format("Email failure: {0}", emailAddress),
                         MessageBoxButtons.OK);
                 }
             }
@@ -61,9 +64,14 @@ namespace TestNinja.Mocking
         OK
     }
 
-    public class XtraMessageBox
+    public interface IXtraMessageBox
     {
-        public static void Show(string s, string housekeeperStatements, MessageBoxButtons ok)
+        void Show(string s, string housekeeperStatements, MessageBoxButtons ok);
+    }
+
+    public class XtraMessageBox : IXtraMessageBox
+    {
+        public void Show(string s, string housekeeperStatements, MessageBoxButtons ok)
         {
         }
     }
