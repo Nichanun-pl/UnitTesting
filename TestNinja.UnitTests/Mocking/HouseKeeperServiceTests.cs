@@ -88,13 +88,17 @@ namespace TestNinja.UnitTests.Mocking
         [Test]
         public void SendStatementEmails_WhenCalled_EmailTheStatement()
         {
-            _statementGenerator.Setup(sg =>
-                sg.SaveStatement(_houseKeeper.Oid, _houseKeeper.FullName, (_statementDate)),
-                ).Returns(_statementFileName);
+            _statementGenerator
+                .Setup(sg => sg.SaveStatement(_houseKeeper.Oid, _houseKeeper.FullName, (_statementDate)))
+                .Returns(_statementFileName);
 
             _service.SendStatementEmails(_statementDate);
 
-
+            _emailSender.Verify(es => es.EmailFile(
+                _houseKeeper.Email,
+                _houseKeeper.StatementEmailBody,
+                _statementFileName,
+                It.IsAny<string>()));
         }
     }
 }
