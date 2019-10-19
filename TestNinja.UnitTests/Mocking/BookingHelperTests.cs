@@ -19,8 +19,8 @@ namespace TestNinja.UnitTests.Mocking
                 new Booking
                 {
                     Id = 2,
-                    ArrivalDate = new DateTime(2017, 1, 15, 14, 0, 0),
-                    DepartureDate = new DateTime(2017, 1, 20, 10, 0, 0),
+                    ArrivalDate = ArriveOn(2017, 1, 15),
+                    DepartureDate = DepartOn(2017, 1, 20),
                     Reference = "a"
                 }
 
@@ -29,8 +29,8 @@ namespace TestNinja.UnitTests.Mocking
             var result = BookingHelper.OverlappingBookingsExist(new Booking
             {
                 Id = 1,
-                ArrivalDate = new DateTime(2017, 1, 10, 14, 0, 0),
-                DepartureDate = new DateTime(2017, 1, 24, 10, 0, 0),
+                ArrivalDate = ArriveOn(2017, 1, 10), //Befor(_existingBooking.ArrivalDate)
+                DepartureDate = DepartOn(2017, 1, 24),
             }, repository.Object);
 
             Assert.That(result, Is.Empty);
