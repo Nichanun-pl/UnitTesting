@@ -12,7 +12,7 @@ namespace TestNinja.Mocking
         private readonly IUnitOfWork _unitOfWork;
         private readonly IStatementGenerator _statementGenerator;
         private readonly IEmailSender _emailSender;
-        private readonly IXtraMessageBox messageBox;
+        private readonly IXtraMessageBox _messageBox;
 
         public HousekeeperHelper(
             IUnitOfWork unitOfWork, 
