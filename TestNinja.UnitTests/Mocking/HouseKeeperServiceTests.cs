@@ -124,9 +124,7 @@ namespace TestNinja.UnitTests.Mocking
         [Test]
         public void SendStatementEmails_StatementFileNameIsEmptyString_ShouldNotEmailTheStatement()
         {
-            _statementGenerator
-                .Setup(sg => sg.SaveStatement(_houseKeeper.Oid, _houseKeeper.FullName, (_statementDate)))
-                .Returns("");
+            _statementFileName = "";
 
             _service.SendStatementEmails(_statementDate);
 
@@ -141,9 +139,7 @@ namespace TestNinja.UnitTests.Mocking
         [Test]
         public void SendStatementEmails_StatementFileNameIsWhitespace_ShouldNotEmailTheStatement()
         {
-            _statementGenerator
-                .Setup(sg => sg.SaveStatement(_houseKeeper.Oid, _houseKeeper.FullName, (_statementDate)))
-                .Returns(" ");
+            _statementFileName = " ";
 
             _service.SendStatementEmails(_statementDate);
 
