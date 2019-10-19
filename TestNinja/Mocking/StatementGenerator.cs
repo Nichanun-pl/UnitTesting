@@ -3,9 +3,14 @@ using System.IO;
 
 namespace TestNinja.Mocking
 {
-    public class StatementGenerator
+    public interface IStatementGenerator
     {
-        public static string SaveStatement(int housekeeperOid, string housekeeperName, DateTime statementDate)
+        string SaveStatement(int housekeeperOid, string housekeeperName, DateTime statementDate);
+    }
+
+    public class StatementGenerator : IStatementGenerator
+    {
+        public string SaveStatement(int housekeeperOid, string housekeeperName, DateTime statementDate)
         {
             var report = new HousekeeperStatementReport(housekeeperOid, statementDate);
 

@@ -10,10 +10,12 @@ namespace TestNinja.Mocking
     public class HousekeeperHelper
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IStatementGenerator _statementGenerator;
 
-        public HousekeeperHelper(IUnitOfWork unitOfWork)
+        public HousekeeperHelper(IUnitOfWork unitOfWork, IStatementGenerator statementGenerator)
         {
             _unitOfWork = unitOfWork;
+            _statementGenerator = statementGenerator;
         }
 
         public bool SendStatementEmails(DateTime statementDate)
@@ -25,7 +27,7 @@ namespace TestNinja.Mocking
                 if (housekeeper.Email == null)
                     continue;
 
-                var statementFilename = SaveStatement(housekeeper.Oid, housekeeper.FullName, statementDate);
+                var statementFilename = _statementGenerator.SaveStatement(housekeeper.Oid, housekeeper.FullName, statementDate);
 
                 if (string.IsNullOrWhiteSpace(statementFilename))
                     continue;
