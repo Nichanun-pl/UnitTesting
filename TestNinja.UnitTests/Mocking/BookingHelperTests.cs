@@ -57,7 +57,7 @@ namespace TestNinja.UnitTests.Mocking
                 DepartureDate = After(_existingBooking.ArrivalDate)
             }, _repository.Object);
 
-            Assert.That(result, Is.EqualTo("a"));
+            Assert.That(result, Is.EqualTo(_existingBooking.Reference));
         }
 
             private DateTime Before(DateTime dateTime, int days = 1)
