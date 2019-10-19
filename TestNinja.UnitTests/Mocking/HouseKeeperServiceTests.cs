@@ -30,6 +30,9 @@ namespace TestNinja.UnitTests.Mocking
             }.AsQueryable());
 
             _statementGenerator = new Mock<IStatementGenerator>();
+            _statementGenerator
+                .Setup(sg => sg.SaveStatement(_houseKeeper.Oid, _houseKeeper.FullName, (_statementDate)))
+                .Returns(() => null);
             _emailSender = new Mock<IEmailSender>();
             _messageBox = new Mock<IXtraMessageBox>();
 
@@ -104,9 +107,7 @@ namespace TestNinja.UnitTests.Mocking
         [Test]
         public void SendStatementEmails_StatementFileNameIsNull_ShouldNotEmailTheStatement()
         {
-            _statementGenerator
-                .Setup(sg => sg.SaveStatement(_houseKeeper.Oid, _houseKeeper.FullName, (_statementDate)))
-                .Returns(() => null);
+            _statementFileName = null;
 
             _service.SendStatementEmails(_statementDate);
 
