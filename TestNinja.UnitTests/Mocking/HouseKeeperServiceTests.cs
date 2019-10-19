@@ -93,17 +93,9 @@ namespace TestNinja.UnitTests.Mocking
         [Test]
         public void SendStatementEmails_WhenCalled_EmailTheStatement()
         {
-            _statementGenerator
-                .Setup(sg => sg.SaveStatement(_houseKeeper.Oid, _houseKeeper.FullName, (_statementDate)))
-                .Returns(_statementFileName);
-
             _service.SendStatementEmails(_statementDate);
 
-            _emailSender.Verify(es => es.EmailFile(
-                _houseKeeper.Email,
-                _houseKeeper.StatementEmailBody,
-                _statementFileName,
-                It.IsAny<string>()));
+            VerifyEmailSent();
         }
 
         [Test]
@@ -144,6 +136,15 @@ namespace TestNinja.UnitTests.Mocking
                             It.IsAny<string>(),
                             It.IsAny<string>()),
                             Times.Never);
+        }
+
+        private void VerifyEmailSent()
+        {
+            _emailSender.Verify(es => es.EmailFile(
+                            _houseKeeper.Email,
+                            _houseKeeper.StatementEmailBody,
+                            _statementFileName,
+                            It.IsAny<string>()));
         }
     }
 }
