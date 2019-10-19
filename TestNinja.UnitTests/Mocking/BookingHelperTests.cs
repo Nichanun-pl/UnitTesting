@@ -1,6 +1,14 @@
-﻿namespace TestNinja.UnitTests.Mocking
+﻿using NUnit.Framework;
+
+namespace TestNinja.UnitTests.Mocking
 {
-    class BookingHelperTests
+    [TestFixture]
+    public class BookingHelper_OverlappingBookingExistTest
     {
+        [Test]
+        public void BookingStartsAndFinishesBeforeAnExistingBooking_ReturnEmptyString()
+        {
+
+        }
     }
 }
