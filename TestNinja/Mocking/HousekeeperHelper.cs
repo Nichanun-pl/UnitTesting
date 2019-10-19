@@ -3,14 +3,20 @@ using System.IO;
 using System.Net;
 using System.Net.Mail;
 using System.Text;
+using TestNinja.Mocking;
 
 namespace TestNinja.Mocking
 {
-    public static class HousekeeperHelper
+    public class HousekeeperHelper
     {
         private static readonly UnitOfWork UnitOfWork = new UnitOfWork();
 
-        public static bool SendStatementEmails(DateTime statementDate)
+        public HousekeeperHelper(IUnitOfWork unitOfWork)
+        {
+
+        }
+
+        public bool SendStatementEmails(DateTime statementDate)
         {
             var housekeepers = UnitOfWork.Query<Housekeeper>();
 
