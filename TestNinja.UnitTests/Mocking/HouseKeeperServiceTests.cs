@@ -1,15 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using Moq;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using TestNinja.Mocking;
+using Moq;
+using System.Collections.Generic;
 using System.Linq;
+using System;
 
 namespace TestNinja.UnitTests.Mocking
 {
     [TestFixture]
     public class HouseKeeperServiceTests
     {
+        private ReHouseKeeperHelper _service;
+        private Mock<IStatementGenerator> _statementGenerator;
+        private Mock<IEmailSender> _emailSender;
+        private Mock<IXtraMessageBox> _messageBox;
+
         [SetUp]
         public void SetUp()
         {
@@ -19,23 +24,23 @@ namespace TestNinja.UnitTests.Mocking
                 new Housekeeper {Email = "a", FullName = "b", Oid = 1, StatementEmailBody = "c" }
             }.AsQueryable());
 
-            var statementGenerator = new Mock<IStatementGenerator>();
-            var emailSender = new Mock<IEmailSender>();
-            var messageBox = new Mock<IXtraMessageBox>();
+            _statementGenerator = new Mock<IStatementGenerator>();
+            _emailSender = new Mock<IEmailSender>();
+            _messageBox = new Mock<IXtraMessageBox>();
 
-            var service = new HousekeeperService(
+            _service = new HousekeeperService(
                 unitOfWork.Object, 
-                statementGenerator.Object, 
-                emailSender.Object, 
-                messageBox.Object);
+                _statementGenerator.Object, 
+                _emailSender.Object, 
+                _messageBox.Object);
         }
 
         [Test]
         public void SendStatementEmails_WhenCalled_GenerateStatements()
         {
-            service.SendStatementEmails(new DateTime(2017, 1, 1));
+            _service.SendStatementEmails(new DateTime(2017, 1, 1));
 
-            statementGenerator.Verify(sg => sg.SaveStatement(1, "b", (new DateTime(2017, 1, 1))));
+            _statementGenerator.Verify(sg => sg.SaveStatement(1, "b", (new DateTime(2017, 1, 1))));
         }
     }
 }
