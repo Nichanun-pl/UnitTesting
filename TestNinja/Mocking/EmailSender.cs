@@ -1,8 +1,17 @@
-﻿namespace TestNinja.Mocking
+﻿using System.Net;
+using System.Net.Mail;
+using System.Text;
+
+namespace TestNinja.Mocking
 {
-    public class EmailSender
+    public interface IEmailSender
     {
-        private static void EmailFile(string emailAddress, string emailBody, string filename, string subject)
+        void EmailFile(string emailAddress, string emailBody, string filename, string subject);
+    }
+
+    public class EmailSender : IEmailSender
+    {
+        public void EmailFile(string emailAddress, string emailBody, string filename, string subject)
         {
             var client = new SmtpClient(SystemSettingsHelper.EmailSmtpHost)
             {
