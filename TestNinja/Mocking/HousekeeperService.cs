@@ -32,8 +32,8 @@ namespace TestNinja.Mocking
 
             foreach (var housekeeper in housekeepers)
             {
- //               if (housekeeper.Email == null)
- //                   continue;
+                if (housekeeper.Email == null)
+                    continue;
 
                 var statementFilename = _statementGenerator.SaveStatement(housekeeper.Oid, housekeeper.FullName, statementDate);
 
