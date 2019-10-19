@@ -11,11 +11,7 @@ namespace TestNinja.Mocking
             if (booking.Status == "Cancelled")
                 return string.Empty;
 
-            var unitOfWork = new UnitOfWork();
-            var bookings =
-                unitOfWork.Query<Booking>()
-                    .Where(
-                        b => b.Id != booking.Id && b.Status != "Cancelled");
+
 
             var overlappingBooking =
                 bookings.FirstOrDefault(
