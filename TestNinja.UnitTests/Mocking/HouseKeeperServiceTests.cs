@@ -20,8 +20,16 @@ namespace TestNinja.UnitTests.Mocking
             }.AsQueryable());
 
             var statementGenerator = new Mock<IStatementGenerator>();
+            var emailSender = new Mock<IEmailSender>();
+            var messageBox = new Mock<IXtraMessageBox>();
 
-            var service = new HousekeeperService(unitOfWork.Object);
+            var service = new HousekeeperService(
+                unitOfWork.Object, 
+                statementGenerator.Object, 
+                emailSender.Object, 
+                messageBox.Object);
+
+            service.SendStatementEmails(new DateTime(2017, 1, 1));
         }
     }
 }
