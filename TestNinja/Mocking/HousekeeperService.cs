@@ -50,8 +50,8 @@ namespace TestNinja.Mocking
                 }
                 catch (Exception e)
                 {
- //                   _messageBox.Show(e.Message, string.Format("Email failure: {0}", emailAddress),
- //                       MessageBoxButtons.OK);
+                    _messageBox.Show(e.Message, string.Format("Email failure: {0}", emailAddress),
+                        MessageBoxButtons.OK);
                 }
             }
         }
